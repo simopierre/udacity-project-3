@@ -1,7 +1,5 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@4.12.1
 
 commands:
   destroy-environment:
@@ -48,7 +46,7 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm run builde
+            npm run build
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -65,7 +63,7 @@ jobs:
           command: |
              cd backend
              npm install
-             npm run builde 
+             npm run build 
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
@@ -131,28 +129,6 @@ jobs:
             npm install
             npm audit fix --audit-level=critical --force
 
-  notify:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*A job has failled*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always
-
 
             
 
@@ -169,4 +145,3 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - notify

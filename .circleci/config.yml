@@ -253,7 +253,7 @@ jobs:
                 -H "X-Api-Key: ${THISDB_API_KEY}" \
                 -d "0"
             fi
-     # Here's where you will add some code to rollback on failur 
+     # Here's where you will add some code to rollback on failure
   
   deploy-frontend:
     docker:

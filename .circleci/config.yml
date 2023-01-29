@@ -238,7 +238,7 @@ jobs:
           name: Run migrations
           command: |
             cd backend
-            npm install
+            npm install 
             npm run migrations > migrations_dump.txt
       - run:
           name: Sending migration status to kvdb
@@ -253,7 +253,7 @@ jobs:
                 -H "X-Api-Key: ${THISDB_API_KEY}" \
                 -d "0"
             fi
-     # Here's where you will add some code to rollback on failure 
+     # Here's where you will add some code to rollback on failur 
   
   deploy-frontend:
     docker:

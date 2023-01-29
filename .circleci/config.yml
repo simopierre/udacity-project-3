@@ -334,14 +334,11 @@ jobs:
             apk add --update curl
             pip install awscli
       - run:
-          name: Get backend url
-          command: |
-            # your code here
-      - run:
           name: Backend smoke test.
           command: |
             BACKEND_IP=$(aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
             API_URL="http://${BACKEND_IP}:3030"
+            cat "${API_URL}/api/status"
             curl "${API_URL}/api/status"
       - run:
           name: Frontend smoke test.

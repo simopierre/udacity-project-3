@@ -304,6 +304,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            cd backend
             apk add --update ansible nodejs npm tar gzip
       - run:
           name: Deploy backend

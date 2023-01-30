@@ -22,11 +22,16 @@
     global: yes
     state: latest
     production: yes
-- name: extract the artifact
-  become: yes
-  unarchive:
+- name: Copy files
+  become: true
+  copy:
     src: /root/project/artifact.tar.gz
-    dest: .
+    dest: /home/ubuntu/artifact.tar.gz
+- name: Unarchive
+  become: true
+  shell : |
+      cd /home/ubuntu/
+      tar xvzf artifact.tar.gz -C .
 - name: start app
   become: yes
   shell: |

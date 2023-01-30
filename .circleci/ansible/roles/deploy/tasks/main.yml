@@ -1,5 +1,5 @@
-  ---
-  - name: "Copy files"
+---
+  - name: Copy files
     become: true
     copy:
       src: /root/project/artifact.tar.gz

@@ -25,7 +25,7 @@
   - name: "run server"
     become: true
     command: |
-      npm install
+      npm install pm2 -g
       pm2 stop default
       pm2 start npm -- start
     args:

@@ -251,13 +251,13 @@ jobs:
   
   deploy-frontend:
     docker:
-      - image: cimg/node:13.8.0
+      - image: sleavely/node-awscli:14.x
     steps:
       - checkout
       - restore_cache:
           keys:
             - build-frontend
-      - dependencies
+      # - dependencies
       - run:
           name: Get backend url
           command: |
@@ -305,6 +305,8 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible nodejs npm tar gzip
+            apk add curl
+            pip3 install awscli
       - run:
           name: Deploy backend
           command: |
